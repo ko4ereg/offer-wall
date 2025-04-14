@@ -13,8 +13,6 @@ declare module 'vue' {
     Card: typeof import('./src/components/Card.vue')['default']
     Cards: typeof import('./src/components/Cards.vue')['default']
     Categories: typeof import('./src/components/Categories.vue')['default']
-    copy: typeof import('./src/components/TopToday copy.vue')['default']
-    HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     Logo: typeof import('./src/components/Logo.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
