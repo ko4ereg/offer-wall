@@ -5,6 +5,11 @@ const tab = ref(1);
 const props = defineProps({
   card: Object,
 });
+
+const getIcon = (icon) => {
+  
+  return new URL(`/src/assets/icons/${icon}`, import.meta.url).href;
+};
 </script>
 
 <template>
@@ -17,7 +22,7 @@ const props = defineProps({
     ><v-card elevation="3" class="overlay-card" width="100%" height="100%">
       <v-card-title>
         <div class="title">
-          <v-img :src="card.icon"></v-img>
+          <v-img :src="getIcon(card.icon)"></v-img>
           <span>{{ card.title }}</span>
         </div>
         <v-icon @click="openCard = false" color="#B3B3B3"
@@ -57,7 +62,7 @@ const props = defineProps({
   <div class="card">
     <div class="info">
       <div class="title">
-        <v-img :src="card.icon"></v-img>
+        <v-img :src="getIcon(card.icon)"></v-img>
         <span>{{ card.title }}</span>
       </div>
       <div class="offer">{{ card.offer }}</div>
