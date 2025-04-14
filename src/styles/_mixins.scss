@@ -1,0 +1,19 @@
+@use "variables.scss" as *;
+
+@mixin defaultText {
+  font-size: $font-size-medium;
+  font-weight: $font-weight-regular;
+  color: $default-text-color;
+  line-height: 140%;
+}
+
+@mixin footerText {
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  font-size: $font-size-x-small;
+  font-weight: $font-weight-regular;
+  color: $default-text-color;
+  line-height: $font-line-height-small;
+  letter-spacing: $font-letter-spacing;
+  color: rgba(179, 179, 179, 1);
+}
