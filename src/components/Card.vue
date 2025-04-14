@@ -177,6 +177,17 @@ const tab = ref(1);
 @media (max-width: 374px) {
   .card {
     padding: 8px;
+    .info {
+      .offer {
+        font-size: 11px;
+      }
+    }
+    .buttons {
+      .v-btn {
+        padding: 0 12px;
+        font-size: 14px;
+      }
+    }
   }
 }
 
