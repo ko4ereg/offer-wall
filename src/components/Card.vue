@@ -1,6 +1,10 @@
 <script setup>
 const openCard = ref(false);
 const tab = ref(1);
+
+const props = defineProps({
+  card: Object,
+});
 </script>
 
 <template>
@@ -13,8 +17,8 @@ const tab = ref(1);
     ><v-card elevation="3" class="overlay-card" width="100%" height="100%">
       <v-card-title>
         <div class="title">
-          <v-img src="@/assets/icons/bistro.png"></v-img>
-          <span>Быстроденьги</span>
+          <v-img :src="card.icon"></v-img>
+          <span>{{ card.title }}</span>
         </div>
         <v-icon @click="openCard = false" color="#B3B3B3"
           >mdi-close</v-icon
@@ -53,12 +57,12 @@ const tab = ref(1);
   <div class="card">
     <div class="info">
       <div class="title">
-        <v-img src="@/assets/icons/bistro.png"></v-img>
-        <span>Быстроденьги</span>
+        <v-img :src="card.icon"></v-img>
+        <span>{{ card.title }}</span>
       </div>
-      <div class="offer">Первый займ бесплатно</div>
-      <div class="text bold">3 000 - 30 000 ₽</div>
-      <div class="text">Одобрение 74%</div>
+      <div class="offer">{{ card.offer }}</div>
+      <div class="text bold">{{ card.textBold }}</div>
+      <div class="text">{{ card.aproove }}</div>
     </div>
     <div class="buttons">
       <v-btn
