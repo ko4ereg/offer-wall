@@ -81,6 +81,7 @@ const select = (index) => {
       font-size: $font-size-small;
       transition: 0.2s ease-out;
       white-space: nowrap;
+      border-radius: 8px;
     }
 
     .active {

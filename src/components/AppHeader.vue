@@ -19,7 +19,6 @@ const onSubmit = () => {
 
   if (!form.value) return;
   modal.value = true;
-  
 };
 
 const emailField = ref(null);
