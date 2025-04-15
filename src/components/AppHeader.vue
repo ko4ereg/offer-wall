@@ -76,6 +76,7 @@ const regEmail = (v) =>
             class="w-100"
           >
             <v-text-field
+            style="padding-bottom: 5px;"
               ref="emailField"
               @update:focused="resetValidation"
               validate-on="submit"
