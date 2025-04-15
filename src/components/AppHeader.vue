@@ -9,6 +9,28 @@ watch(drawer, (val) => {
 onBeforeUnmount(() => {
   document.body.style.overflow = "";
 });
+
+const modal = ref(false);
+
+const form = ref(false);
+
+const onSubmit = () => {
+  console.log("submit");
+
+  if (!form.value) return;
+  modal.value = true;
+  
+};
+
+const emailField = ref(null);
+const resetValidation = async () => {
+  if (emailField.value) {
+    return emailField.value.resetValidation();
+  }
+};
+
+const regEmail = (v) =>
+  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) || "Введите корректный Email";
 </script>
 
 <template>
@@ -48,14 +70,28 @@ onBeforeUnmount(() => {
           <div class="subscribe">
             Подпишитесь на уведомления об обновлении рейтингов займов
           </div>
-          <v-form class="w-100">
+          <v-form
+            validate-on="submit"
+            v-model="form"
+            @submit.prevent="onSubmit"
+            class="w-100"
+          >
             <v-text-field
+              ref="emailField"
+              @update:focused="resetValidation"
+              validate-on="submit"
+              :rules="[regEmail]"
               variant="solo"
               v-model="email"
               bg-color="#F5F5F5"
               placeholder="Введите ваш email"
             ></v-text-field>
-            <v-btn elevation="0" color="#FC0" style="border-radius: 8px" block
+            <v-btn
+              elevation="0"
+              type="submit"
+              color="#FC0"
+              style="border-radius: 8px"
+              block
               >Подписаться</v-btn
             >
           </v-form>
@@ -63,6 +99,24 @@ onBeforeUnmount(() => {
       </div>
     </div>
   </v-navigation-drawer>
+
+  <v-dialog v-model="modal">
+    <v-card elevation="3" class="overlay-card" width="100%" height="100%">
+      <v-card-title>
+        <v-icon
+          style="position: absolute; top: 5px; right: 5px"
+          @click="modal = false"
+          color="#B3B3B3"
+          >mdi-close</v-icon
+        ></v-card-title
+      >
+      <v-card-text
+        ><div class="d-flex align-center justify-center">
+          Вы подписаны на уведомления
+        </div></v-card-text
+      ></v-card
+    ></v-dialog
+  >
 </template>
 
 <style scoped lang="scss">

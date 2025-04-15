@@ -7,7 +7,6 @@ const props = defineProps({
 });
 
 const getIcon = (icon) => {
-  
   return new URL(`/src/assets/icons/${icon}`, import.meta.url).href;
 };
 </script>
@@ -122,10 +121,11 @@ const getIcon = (icon) => {
       }
     }
     .offer {
+      
       display: flex;
       padding: 0px 3px;
       width: 100%;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       gap: 10px;
       border-radius: 4px;

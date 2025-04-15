@@ -38,15 +38,13 @@ const categories = ref([
   },
 ]);
 
-const select = (index) => {
-  console.log(index);
+const selected = ref(0);
 
-  if (categories.value[index].isSelected) {
-    categories.value[index].isSelected = false;
-  } else {
-    categories.value[index].isSelected = true;
-  }
+const select = (index) => {
+  selected.value = index;
 };
+
+
 </script>
 <template>
   <div class="categories">
@@ -54,7 +52,7 @@ const select = (index) => {
       <div
         @click="select(index)"
         class="category"
-        :class="{ active: item.isSelected }"
+        :class="{ active: selected === index }"
         v-for="(item, index) in categories"
       >
         {{ item.label }}
@@ -66,7 +64,7 @@ const select = (index) => {
 <style lang="scss" scoped>
 .categories {
   .categories-scroll {
-    padding: 8px 0;
+    padding: 8px 5px;
     @include defaultText;
     display: flex;
     align-items: center;
@@ -87,7 +85,7 @@ const select = (index) => {
 
     .active {
       border-radius: 8px;
-      background: rgba(255, 255, 255, 1);
+      background: rgb(146, 212, 91);
     }
   }
 }

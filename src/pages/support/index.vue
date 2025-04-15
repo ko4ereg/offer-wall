@@ -8,11 +8,21 @@ const form = ref(false);
 const required = (v) => !!v || "Это поле обязательно для заполнения";
 
 const onSubmit = () => {
-  submitSuccess.value = true;
   if (!form.value) return;
+  submitSuccess.value = true;
 };
 
 const submitSuccess = ref(false);
+
+const emailField = ref(null);
+const resetValidation = async () => {
+  if (emailField.value) {
+    return emailField.value.resetValidation();
+  }
+};
+
+const regEmail = (v) =>
+  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) || "Введите корректный Email";
 </script>
 
 <template>
@@ -21,7 +31,7 @@ const submitSuccess = ref(false);
       <div class="title">Заполните форму для обращения</div>
       <v-form
         validate-on="submit"
-        @submit="onSubmit"
+        @submit.prevent="onSubmit"
         v-model="form"
         class="w-100"
       >
@@ -34,8 +44,10 @@ const submitSuccess = ref(false);
           placeholder="ФИО"
         ></v-text-field>
         <v-text-field
-          validate-on="lazy input"
-          :rules="[required]"
+          ref="emailField"
+          @update:focused="resetValidation"
+          validate-on="submit"
+          :rules="[required, regEmail]"
           variant="solo"
           v-model="email"
           bg-color="#F5F5F5"
