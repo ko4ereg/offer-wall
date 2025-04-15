@@ -99,7 +99,7 @@ const regEmail = (v) =>
   .v-form {
     display: flex;
     flex-direction: column;
-    
+    gap: 3px;
     :deep(.v-field--variant-solo),
     .v-field--variant-solo-filled {
       box-shadow: none !important;
