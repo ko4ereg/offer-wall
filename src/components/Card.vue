@@ -34,13 +34,15 @@ const getIcon = (icon) => {
           <v-tab :value="2">Требования и документы</v-tab>
         </v-tabs>
         <v-tabs-window v-model="tab">
-          <v-tabs-window-item style="height: 100%" :value="1">
+          <v-tabs-window-item
+            :reverse-transition="false"
+            :transition="false"
+            style="height: 100%"
+            :value="1"
+          >
             <div class="list-block">
               <div class="item">Сумма <span>от 3 000 до 30 000 ₽</span></div>
-              <div class="item">Ставка в день <span>0,8%</span></div>
-              <div class="item">
-                Полная стоимость займа <span>292% годовых</span>
-              </div>
+
               <div class="item">Срок <span>от 7 до 30 дней</span></div>
               <div class="item">Одобрение <span>74%</span></div>
               <div class="item">
@@ -48,13 +50,40 @@ const getIcon = (icon) => {
               </div>
             </div>
           </v-tabs-window-item>
-          <v-tabs-window-item style="height: 100%" :value="2">
+          <v-tabs-window-item
+            :reverse-transition="false"
+            :transition="false"
+            style="height: 100%"
+            :value="2"
+          >
             <div class="list-block">
               <div class="item">Возраст <span>от 18 до 100</span></div>
               <div class="item">Документы <span>паспорт РФ</span></div>
             </div>
           </v-tabs-window-item>
         </v-tabs-window>
+        <div class="buttonsModal">
+          <v-btn
+            height="40px"
+            elevation="0"
+            color="#FC0"
+            block
+            style="border-radius: 8px"
+            >Получить заем</v-btn
+          >
+          <v-btn
+            height="40px"
+            elevation="0"
+            color="#D9D9D9"
+            block
+            style="border-radius: 8px"
+            >К списку предложений</v-btn
+          >
+        </div>
+        <div v-if="tab == 2" class="license">
+          ООО МКК «Русинтерфинанс» <br />
+          лиц. ЦБ №2120754001243 от 22.03.2012 г.
+        </div>
       </v-card-text>
     </v-card></v-dialog
   >
@@ -90,6 +119,40 @@ const getIcon = (icon) => {
 </template>
 
 <style lang="scss" scoped>
+.v-card-text {
+  display: flex;
+  flex-direction: column;
+}
+.license {
+  color: #757575;
+  text-align: center;
+  margin-top: auto;
+  /* Body Base */
+  font-family: "Inter";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%; /* 22.4px */
+  padding-bottom: 24px;
+}
+.buttonsModal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 40px;
+  align-self: stretch;
+  display: flex;
+  padding: 24px 0px 16px;
+
+  .v-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: none;
+    color: white !important;
+    @include defaultText;
+  }
+}
 .card {
   display: flex;
   padding: 12px;
@@ -121,7 +184,6 @@ const getIcon = (icon) => {
       }
     }
     .offer {
-      
       display: flex;
       padding: 0px 3px;
       width: 100%;
@@ -240,10 +302,11 @@ const getIcon = (icon) => {
     .list-block {
       display: flex;
       flex-direction: column;
-      align-items: flex-end;
+      height: 100%;
       gap: 16px;
       align-self: stretch;
       padding-top: 24px;
+      flex: 1 0 100%;
       @include defaultText;
       .item {
         display: flex;

@@ -36,6 +36,7 @@ const regEmail = (v) =>
         class="w-100"
       >
         <v-text-field
+          rounded="lg"
           validate-on="lazy input"
           variant="solo"
           :rules="[required]"
@@ -44,6 +45,7 @@ const regEmail = (v) =>
           placeholder="ФИО"
         ></v-text-field>
         <v-text-field
+          rounded="lg"
           ref="emailField"
           @update:focused="resetValidation"
           validate-on="submit"
@@ -54,6 +56,7 @@ const regEmail = (v) =>
           placeholder="Email"
         ></v-text-field>
         <v-text-field
+          rounded="lg"
           validate-on="lazy input"
           variant="solo"
           :rules="[required]"

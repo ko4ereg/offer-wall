@@ -67,7 +67,8 @@ const regEmail = (v) =>
 
         <div class="list d-flex flex-column">
           <div class="subscribe">
-            Подпишитесь на уведомления об обновлении рейтингов займов
+            Подпишитесь на уведомления <br />
+            об обновлении рейтингов займов
           </div>
           <v-form
             validate-on="submit"
@@ -76,8 +77,9 @@ const regEmail = (v) =>
             class="w-100"
           >
             <v-text-field
-            style="padding-bottom: 5px;"
+              style="padding-bottom: 5px; "
               ref="emailField"
+              rounded="lg"
               @update:focused="resetValidation"
               validate-on="submit"
               :rules="[regEmail]"
@@ -143,6 +145,8 @@ const regEmail = (v) =>
   }
 
   .subscribe {
+    width: 100%;
+    text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
