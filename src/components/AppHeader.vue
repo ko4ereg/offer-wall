@@ -12,6 +12,21 @@ onBeforeUnmount(() => {
   document.body.style.overflow = "";
 });
 
+const headerTitle = computed(() => {
+  switch (page.value) {
+    case "/licence":
+      return "Список лицензий";
+    case "/terms":
+      return "Условия кредитования";
+    case "/support":
+      return "Обращение";
+    case "/":
+      return "Топ одобрений сегодня";
+    default:
+      return "";
+  }
+});
+
 const modal = ref(false);
 
 const form = ref(false);
@@ -41,17 +56,7 @@ const regEmail = (v) =>
         <div class="d-flex align-center" style="gap: 17px">
           <RouterLink to="/"> <Logo /></RouterLink>
           <div v-if="!drawer">
-            {{
-              page === "/licence"
-                ? "Список лицензий"
-                : page === "/terms"
-                ? "Условия кредитования"
-                : page === "/support"
-                ? "Обращение"
-                : page === "/"
-                ? "Топ одобрений сегодня"
-                : ""
-            }}
+            {{ headerTitle }}
           </div>
         </div>
         <v-icon @click="drawer = !drawer">{{

@@ -9,6 +9,13 @@ const props = defineProps({
 const getIcon = (icon) => {
   return new URL(`/src/assets/icons/${icon}`, import.meta.url).href;
 };
+
+const getDecisionTime = (time) => {
+  if (time > 15) return time;
+  if (time > 5) return 15;
+  if (time > 1) return 5;
+  return time;
+};
 </script>
 
 <template>
@@ -76,6 +83,7 @@ const getIcon = (icon) => {
             elevation="0"
             color="#D9D9D9"
             block
+            @click="openCard = false" 
             style="border-radius: 8px"
             >К списку предложений</v-btn
           >
@@ -96,17 +104,7 @@ const getIcon = (icon) => {
       <div class="offer">{{ card.offer }}</div>
       <div class="text bold">{{ card.textBold }}</div>
       <div class="text small">
-        Принятие решения
-        {{
-          card.time > 15
-            ? card.time
-            : card.time > 5
-            ? 15
-            : card.time > 1
-            ? 5
-            : card.time
-        }}
-        мин
+        Принятие решения {{ getDecisionTime(card.time) }} мин
       </div>
     </div>
     <div class="buttons">
