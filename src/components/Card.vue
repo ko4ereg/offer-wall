@@ -95,23 +95,35 @@ const getIcon = (icon) => {
       </div>
       <div class="offer">{{ card.offer }}</div>
       <div class="text bold">{{ card.textBold }}</div>
-      <div class="text">{{ card.aproove }}</div>
+      <div class="text small">
+        Принятие решения
+        {{
+          card.time > 15
+            ? card.time
+            : card.time > 5
+            ? 15
+            : card.time > 1
+            ? 5
+            : card.time
+        }}
+        мин
+      </div>
     </div>
     <div class="buttons">
-      <v-btn
+      <v-icon
         @click="openCard = true"
-        size="x-small"
-        style="border-radius: 8px; padding: 0"
-        color="rgba(242, 242, 247, 1)"
-        elevation="0"
-        height="40px"
-        width="40px"
+        style="position: absolute; top: 8px; right: 8px"
+        size="16"
+        color="rgba(117, 117, 117, 1)"
+        >mdi-information-outline</v-icon
       >
-        <v-icon size="16" color="rgba(117, 117, 117, 1)"
-          >mdi-information-outline</v-icon
-        >
-      </v-btn>
-      <v-btn height="40px" elevation="0" color="#FC0" style="border-radius: 8px"
+
+      <v-btn
+        height="40px"
+        block
+        elevation="0"
+        color="#FC0"
+        style="border-radius: 8px"
         >Получить</v-btn
       >
     </div>
@@ -154,6 +166,7 @@ const getIcon = (icon) => {
   }
 }
 .card {
+  position: relative;
   display: flex;
   padding: 12px;
   flex-direction: column;
@@ -186,21 +199,25 @@ const getIcon = (icon) => {
     .offer {
       display: flex;
       padding: 0px 3px;
-      width: 100%;
+      width: fit-content;
       justify-content: flex-start;
       align-items: center;
       gap: 10px;
       border-radius: 4px;
       background: rgba(255, 59, 48, 0.2);
       color: #ff3b30;
-      font-size: $font-size-x-small;
+      font-size: $font-size-small;
     }
     .text {
       @include defaultText;
+      font-size: $font-size-small;
     }
 
     .bold {
       font-weight: 600;
+    }
+    .small {
+      font-size: $font-size-x-small;
     }
   }
   .buttons {

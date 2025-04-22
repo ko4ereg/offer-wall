@@ -6,6 +6,8 @@ watch(drawer, (val) => {
   document.body.style.overflow = val ? "hidden" : "";
 });
 
+const route = useRoute();
+const page = computed(() => route.path);
 onBeforeUnmount(() => {
   document.body.style.overflow = "";
 });
@@ -36,7 +38,22 @@ const regEmail = (v) =>
   <v-app-bar absolute app elevation="0" :height="48" location="top">
     <div class="main-container">
       <div class="d-flex align-center justify-space-between header">
-        <RouterLink to="/"> <Logo /></RouterLink>
+        <div class="d-flex align-center" style="gap: 17px">
+          <RouterLink to="/"> <Logo /></RouterLink>
+          <div v-if="!drawer">
+            {{
+              page === "/licence"
+                ? "Список лицензий"
+                : page === "/terms"
+                ? "Условия кредитования"
+                : page === "/support"
+                ? "Обращение"
+                : page === "/"
+                ? "Топ одобрений сегодня"
+                : ""
+            }}
+          </div>
+        </div>
         <v-icon @click="drawer = !drawer">{{
           drawer ? "mdi-close" : "mdi-menu"
         }}</v-icon>
@@ -77,7 +94,7 @@ const regEmail = (v) =>
             class="w-100"
           >
             <v-text-field
-              style="padding-bottom: 5px; "
+              style="padding-bottom: 5px"
               ref="emailField"
               rounded="lg"
               @update:focused="resetValidation"

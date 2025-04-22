@@ -1,7 +1,6 @@
 <script setup></script>
 <template>
   <div class="top">
-    <div class="top-title">Топ одобрений сегодня</div>
     <div class="icons">
       <v-img height="40px" width="40px" src="@/assets/icons/bankir.png"></v-img>
 

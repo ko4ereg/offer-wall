@@ -23,7 +23,7 @@ const list = [
 
 <template>
   <div class="main-container">
-    <div class="title">Список лицензий</div>
+    
     <div class="list">
       <div class="item" v-for="item in list">{{ item.text }}</div>
     </div>
